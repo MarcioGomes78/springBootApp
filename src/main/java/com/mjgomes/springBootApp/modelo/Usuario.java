@@ -33,7 +33,7 @@ public class Usuario {
     private String email;
 
     @NotEmpty(message = "Digite sua senha")
-    @Size(min= 3, message = "Asenha deve ter no minímo 6 caracteres")
+    @Size(min= 3, message = "A senha deve ter no minímo 6 caracteres")
     private String password;
 
     @NotEmpty(message = "Informe sue login")
