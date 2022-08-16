@@ -36,6 +36,14 @@
                             <td><samp th:text="${usuario.cpf}">CPF</samp></td>
                             <td><samp th:text="${#dates.format(usuario.dataNascimento, 'dd/MM/yyyy')}">Nascimento</samp></td>
                             <td><samp th:text="${usuario.email}">E-mail</samp></td>
+                            <td>
+                                <a class="btn btn outline-danger btn-sm"
+                                    th:href="@{/usuario/admin/apagar/{id}(id=${usuario.id})}"
+                                    th:data-confirm-delete="|Você gostaria de apagar ${usuario.nome}?|"
+                                    onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                                    Apagar
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
