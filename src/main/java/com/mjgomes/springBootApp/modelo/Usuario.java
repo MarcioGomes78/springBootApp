@@ -41,20 +41,6 @@ public class Usuario {
     private String login;
     private boolean ativo;
 
-    public Usuario() {
-    }
-
-    public Usuario(Long id, String nome, String cpf, Date dataNascimento, String email, String password, String login, boolean ativo) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.password = password;
-        this.login = login;
-        this.ativo = ativo;
-    }
-
     public Long getId() {
         return id;
     }

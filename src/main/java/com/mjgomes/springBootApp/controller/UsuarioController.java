@@ -32,6 +32,6 @@ public class UsuarioController {
         }
         usuarioRepository.save(usuario);
         attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso");
-        return "redirect: /usuario/novo";
+        return "redirect:/usuario/novo";
     }
 }
