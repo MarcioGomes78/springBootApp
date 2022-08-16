@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content='text/html; charset="UTF-8' http-equiv='Content-Type'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.0-dist/css/bootstrap.min.css}">
+
+    <script th:src="@{/jquery-3.6.0-dist/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/bootstrap-5.2.0-dist/js/bootstrap.min.js}"></script>
+
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <div th:insert="fragments/publica-nav :: nav"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Lista de Usuários</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Nascimento</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${usuarios.empty}">
+                            <td colspan="2">Sem Usuário</td>
+                        </tr>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td><samp th:text="${usuario.nome}">Nome</samp></td>
+                            <td><samp th:text="${usuario.cpf}">CPF</samp></td>
+                            <td><samp th:text="${#dates.format(usuario.dataNascimento, 'dd/MM/yyyy')}">Nascimento</samp></td>
+                            <td><samp th:text="${usuario.email}">E-mail</samp></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
