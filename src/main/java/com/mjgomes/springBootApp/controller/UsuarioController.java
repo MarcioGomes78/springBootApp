@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/usuario")
@@ -45,4 +46,28 @@ public class UsuarioController {
         usuarioRepository.delete(usuario);
         return "redirect:/usuario/admin/listar";
     }
+    @GetMapping("/editar/{id}")
+    public String editarUsuario(@PathVariable("id") long id, Model model) {
+        Optional<Usuario> usuarioVelho = usuarioRepository.findById(id);
+        if (!usuarioVelho.isPresent()) {
+            throw new IllegalArgumentException("Usuário inválido:" + id);
+        }
+        Usuario usuario = usuarioVelho.get();
+        model.addAttribute("usuario", usuario);
+        return "/auth/admin/user/user-alterar-usuario";
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarUsuario(@PathVariable("id") long id,
+                                @Valid Usuario usuario, BindingResult result) {
+        if (result.hasErrors()) {
+            usuario.setId(id);
+            return "/auth/user/user-alterar-usuario";
+        }
+        usuarioRepository.save(usuario);
+        return "redirect:/usuario/admin/listar";
+    }
+
+
+
 }
