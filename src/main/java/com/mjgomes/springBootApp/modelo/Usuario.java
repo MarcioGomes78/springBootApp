@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -40,6 +41,28 @@ public class Usuario {
     @Size(min= 6, message = "O login deve ter no minímo 5 caracteres")
     private String login;
     private boolean ativo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_papel", joinColumns = @JoinColumn(name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "papel_id"))
+    private List<Papel> papeis;
+
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String cpf, Date dataNascimento, String email,
+                   String password, String login, boolean ativo, List<Papel> papeis) {
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.password = password;
+        this.login = login;
+        this.ativo = ativo;
+        this.papeis = papeis;
+    }
 
     public Long getId() {
         return id;
@@ -103,5 +126,13 @@ public class Usuario {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public List<Papel> getPapeis() {
+        return papeis;
+    }
+
+    public void setPapeis(List<Papel> papeis) {
+        this.papeis = papeis;
     }
 }
