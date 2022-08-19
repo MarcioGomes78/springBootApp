@@ -12,15 +12,12 @@ public class Papel {
 
     @ManyToMany(mappedBy = "papeis", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
-
-    public Papel(String papelString) {
+    public Papel() {
     }
 
-    public Papel(Long id, String papel, List<Usuario> usuarios) {
+    public Papel(String papel) {
         super();
-        this.id = id;
         this.papel = papel;
-        this.usuarios = usuarios;
     }
 
     public Long getId() {
